@@ -1,6 +1,6 @@
 let n = +prompt("Nhập số nguyên dương: ");
 if (n <= 2 || isNaN(n)) {
-  document.write("Vui lòng nhập một số nguyên dương >= 2.");
+  document.writeln("Vui lòng nhập một số nguyên dương >= 2.");
 } else {
   printNumberPrimes(n);
 }
@@ -13,10 +13,10 @@ function isPrime(number) {
   return true;
 }
 function printNumberPrimes(n) {
-  document.write(`Các số nguyên tố từ 2 đến ${n} là: `);
+  document.writeln(`Các số nguyên tố từ 2 đến ${n} là: `);
   for (let i = 2; i <= n; i++) {
     if (isPrime(i)) {
-      document.write(`${i}, `);
+      document.writeln(`${i}, `);
     }
   }
 }
