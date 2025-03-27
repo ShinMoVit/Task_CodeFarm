@@ -5,6 +5,10 @@ function isSameSign(a, b) {
     document.writeln(`Vui lòng nhập số hợp lệ`);
     return;
   }
+  if (a === 0 || b === 0) {
+    document.writeln(`Không thể xác định dấu khi 1 trong 2 số bằng 0`);
+    return;
+  }
   if (a * b > 0) {
     return true;
   }
