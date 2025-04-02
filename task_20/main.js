@@ -8,3 +8,4 @@ function printChristmasTree(n, character) {
 }
 
 console.log(printChristmasTree(10, "O"));
+document.getElementById("tree").textContent = printChristmasTree(10, "O");
