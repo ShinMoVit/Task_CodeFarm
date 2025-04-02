@@ -96,4 +96,3 @@
   // console.log(insertNumber([-1, 10, -5, "abc"], -3));
   // console.log(insertNumber([5, 2, 8], NaN));
 }
-//AnhDongGaVL
