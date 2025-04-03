@@ -5,16 +5,13 @@
       return Boolean(num);
     });
   }
-  console.log(
-    "Ex01: Viết hàm nhận vào một mảng và làm sạch các falsy values có trong mảng"
-  );
+
   console.log(cleanFalsyValues([1, , "", null, "hello", undefined, NaN, 2]));
 }
 
 {
   // ! Viết hàm lọc lấy các số chẵn của một mảng
   const filterEvenNumbers = (numbers) => numbers.filter((num) => num % 2 === 0);
-  console.log("Ex02: Viết hàm lọc lấy các số chẵn của một mảng");
   console.log(filterEvenNumbers([1, 2, 3, 4, 5, 6]));
   console.log(filterEvenNumbers([1, 3, 5, 7]));
   console.log(filterEvenNumbers([]));
@@ -24,9 +21,7 @@
 {
   // ! Viết hàm lọc lấy các chuỗi có độ dài lớn hơn 5 của mảng các chuỗi
   const filterLongStrings = (arr) => arr.filter((str) => str.length > 5);
-  console.log(
-    "Ex03: Viết hàm lọc lấy các chuỗi có độ dài lớn hơn 5 của mảng các chuỗi "
-  );
+
   console.log(filterLongStrings(["hello", "world", "javascript", "nodejs"]));
   console.log(filterLongStrings(["hi", "hello world", "a b c", "goodbye!!"]));
   console.log(filterLongStrings(["hi", "bye", "yes"]));
@@ -76,10 +71,7 @@
 
     return { max, maxIndex, min, minIndex, primeAverage };
   }
-  console.log(`Ex 04: Cho trước mảng chứa các số nguyên, viết hàm tìm:
-   *Tìm số lớn nhất trong mảng và vị trí của nó (Nếu có 2 số bằng nhau, lấy số đầu tiên tìm được).
-   *Tìm số nhỏ nhất trong mảng và vị trí của nó (Nếu có 2 số bằng nhau, lấy số đầu tiên tìm được).
-   *Tính trung bình cộng các số nguyên tố trong mảng, nếu mảng không có số nguyên tố nào, trả về null.`);
+
   console.log(findMinMaxAverage([3, 1, 4, 1, 5, 9, 2, 6]));
   console.log(findMinMaxAverage([5, 5, 2, 2, 1]));
   console.log(findMinMaxAverage([-3, 7, -8, 11, 0]));
@@ -98,10 +90,7 @@
 
     return filteredArr;
   }
-  console.log(`Ex05: Viết hàm chèn số vào mảng mà không thay đổi thứ tự tăng dần của mảng.
-Cho trước một mảng chưa được sắp xếp.
-Hãy sắp xếp lại mảng theo thứ tự tăng dần và loại bỏ toàn bộ giá trị không phải là số hoặc là NaN của mảng.
-Viết hàm insertNumber(arr, num) để chèn số num vào mảng arr mà không làm thay đổi thứ tự tăng dần của mảng.`);
+
   console.log(insertNumber([1, 3, 5, 7, 9, 22, 11], 44));
   console.log(insertNumber([3, "hello", 1, NaN, 4, null], 2));
   console.log(insertNumber([], 5));
