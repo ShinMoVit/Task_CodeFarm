@@ -10,31 +10,8 @@ const users = [
   { fullname: "Nguyen Ngoc V", age: 32, address: "LangSon" },
   { fullname: "Nguyen Minh E", age: 32, address: "LangSon" },
   { fullname: "Nguyen Duc H", age: 32, address: "LangSon" },
+  { fullname: "Nguyen Duc A", age: 33, address: "LangSon" },
 ];
-// function sortedUsers(arrayUser) {
-//   const splitName = (fullName) => {
-//     const parts = fullName.trim().split(/\s+/);
-//     const lastName = parts[parts.length - 1] || "";
-//     const middleName =
-//       parts.length > 2 ? parts.slice(1, -1).join(" ") : parts[1] || "";
-//     const firstName = parts[0] || "";
-//     return { firstName, middleName, lastName };
-//   };
-
-//   return arrayUser.sort((a, b) => {
-//     const nameA = splitName(a.fullName);
-//     const nameB = splitName(b.fullName);
-
-//     const cmpLast = nameA.lastName.localeCompare(nameB.lastName);
-//     if (cmpLast !== 0) return cmpLast;
-
-//     const cmpMiddle = nameA.middleName.localeCompare(nameB.middleName);
-//     if (cmpMiddle !== 0) return cmpMiddle;
-
-//     return nameA.firstName.localeCompare(nameB.firstName);
-//   });
-// }
-// console.log(sortedUsers(users));
 
 function sortedUsers(arrayUser) {
   const splitName = (fullName) => {
@@ -47,8 +24,8 @@ function sortedUsers(arrayUser) {
   };
 
   return arrayUser.sort((a, b) => {
-    const nameA = splitName(a.fullname); // <-- sửa ở đây
-    const nameB = splitName(b.fullname); // <-- sửa ở đây
+    const nameA = splitName(a.fullname);
+    const nameB = splitName(b.fullname);
 
     const cmpLast = nameA.lastName.localeCompare(nameB.lastName);
     if (cmpLast !== 0) return cmpLast;
