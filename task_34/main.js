@@ -1,0 +1,62 @@
+// Input
+const users = [
+  { fullname: "Hoang Thi K", age: 20, address: "LangSon" },
+  { fullname: "Le Thi X", age: 22, address: "BacGiang" },
+  { fullname: "Le Van Y", age: 21, address: "HaNoi" },
+  { fullname: "Hoang Duc F", age: 22, address: "HaNoi" },
+  { fullname: "Tran Duc B", age: 32, address: "LangSon" },
+  { fullname: "Tran Duc B", age: 32, address: "LangSon" },
+  { fullname: "Tran Thi E", age: 32, address: "LangSon" },
+  { fullname: "Nguyen Ngoc V", age: 32, address: "LangSon" },
+  { fullname: "Nguyen Minh E", age: 32, address: "LangSon" },
+  { fullname: "Nguyen Duc H", age: 32, address: "LangSon" },
+];
+// function sortedUsers(arrayUser) {
+//   const splitName = (fullName) => {
+//     const parts = fullName.trim().split(/\s+/);
+//     const lastName = parts[parts.length - 1] || "";
+//     const middleName =
+//       parts.length > 2 ? parts.slice(1, -1).join(" ") : parts[1] || "";
+//     const firstName = parts[0] || "";
+//     return { firstName, middleName, lastName };
+//   };
+
+//   return arrayUser.sort((a, b) => {
+//     const nameA = splitName(a.fullName);
+//     const nameB = splitName(b.fullName);
+
+//     const cmpLast = nameA.lastName.localeCompare(nameB.lastName);
+//     if (cmpLast !== 0) return cmpLast;
+
+//     const cmpMiddle = nameA.middleName.localeCompare(nameB.middleName);
+//     if (cmpMiddle !== 0) return cmpMiddle;
+
+//     return nameA.firstName.localeCompare(nameB.firstName);
+//   });
+// }
+// console.log(sortedUsers(users));
+
+function sortedUsers(arrayUser) {
+  const splitName = (fullName) => {
+    const parts = fullName.trim().split(/\s+/);
+    const lastName = parts[parts.length - 1] || "";
+    const middleName =
+      parts.length > 2 ? parts.slice(1, -1).join(" ") : parts[1] || "";
+    const firstName = parts[0] || "";
+    return { firstName, middleName, lastName };
+  };
+
+  return arrayUser.sort((a, b) => {
+    const nameA = splitName(a.fullname); // <-- sửa ở đây
+    const nameB = splitName(b.fullname); // <-- sửa ở đây
+
+    const cmpLast = nameA.lastName.localeCompare(nameB.lastName);
+    if (cmpLast !== 0) return cmpLast;
+
+    const cmpMiddle = nameA.middleName.localeCompare(nameB.middleName);
+    if (cmpMiddle !== 0) return cmpMiddle;
+
+    return nameA.firstName.localeCompare(nameB.firstName);
+  });
+}
+console.log(sortedUsers(users));
