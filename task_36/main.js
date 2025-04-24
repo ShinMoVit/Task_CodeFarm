@@ -5,12 +5,7 @@ const students = [
 ];
 
 const tableElement = document.querySelector("#dataTable");
-tableElement.style.cssText = `
-        border-collapse: collapse;
-        margin: 20px;
-        background-color: #ece5e5;
-        border: 3px solid blue;
-`;
+
 const keys = Object.keys(students[0]);
 const theadElement = tableElement.createTHead();
 const trHeader = theadElement.insertRow();
