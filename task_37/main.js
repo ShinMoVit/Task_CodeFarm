@@ -10,14 +10,6 @@ addItem.addEventListener("click", () => {
   newItem.className = "item";
   newItem.textContent = `Phần tử ${count}`;
 
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "Xoá";
-  deleteBtn.style.marginLeft = "10px";
-  deleteBtn.addEventListener("click", () => {
-    list.removeChild(newItem);
-  });
-
-  newItem.appendChild(deleteBtn);
   list.appendChild(newItem);
   count++;
 });
@@ -28,7 +20,7 @@ removeItem.addEventListener("click", () => {
 
   if (lastItem) {
     list.removeChild(lastItem);
-    count = Math.max(1, count - 1);
+    count--;
   } else {
     alert("Không còn phần tử nào để xóa!");
   }
