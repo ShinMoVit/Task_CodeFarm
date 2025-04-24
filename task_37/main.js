@@ -1,5 +1,5 @@
 let count = 1;
-// const removeItem = document.querySelector(".btn-remove");
+const removeItem = document.querySelector(".btn-remove");
 const removeAllItem = document.querySelector(".btn-removeAll");
 const addItem = document.querySelector(".btn-add");
 
@@ -22,17 +22,17 @@ addItem.addEventListener("click", () => {
   count++;
 });
 
-// removeItem.addEventListener("click", () => {
-//   const list = document.querySelector("#list");
-//   const lastItem = list.lastElementChild;
+removeItem.addEventListener("click", () => {
+  const list = document.querySelector("#list");
+  const lastItem = list.lastElementChild;
 
-//   if (lastItem) {
-//     list.removeChild(lastItem);
-//     count = Math.max(1, count - 1);
-//   } else {
-//     alert("Không còn phần tử nào để xóa!");
-//   }
-// });
+  if (lastItem) {
+    list.removeChild(lastItem);
+    count = Math.max(1, count - 1);
+  } else {
+    alert("Không còn phần tử nào để xóa!");
+  }
+});
 
 removeAllItem.addEventListener("click", () => {
   const list = document.querySelector("#list");
