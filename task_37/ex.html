@@ -7,11 +7,19 @@
     <style>
       .container {
         margin: 20px;
+        font-family: Arial, sans-serif;
+      }
+      button {
+        padding: 10px 25px;
       }
       .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         padding: 10px;
-        margin: 5px;
+        margin: 5px 0;
         background-color: #f0f0f0;
+        border-radius: 5px;
       }
     </style>
   </head>
@@ -19,9 +27,9 @@
     <div class="container">
       <h1>Danh sách phần tử</h1>
       <div id="list"></div>
-      <button class="btn-add">Thêm phần tử</button>
-      <button class="btn-remove">Xóa phần tử</button>
-      <button class="btn-removeAll">Xóa tất cả</button>
+      <button class="btn btn-add">ADD</button>
+      <!-- <button class="btn btn-remove">REMOVE</button> -->
+      <button class="btn btn-removeAll">REMOVE ALL</button>
     </div>
     <script src="main.js"></script>
   </body>
