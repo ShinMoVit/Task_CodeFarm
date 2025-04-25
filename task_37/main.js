@@ -2,20 +2,17 @@ let count = 1;
 const removeItem = document.querySelector(".btn-remove");
 const removeAllItem = document.querySelector(".btn-removeAll");
 const addItem = document.querySelector(".btn-add");
+const list = document.querySelector("#list");
 
 addItem.addEventListener("click", () => {
-  const list = document.getElementById("list");
-
   const newItem = document.createElement("div");
   newItem.className = "item";
   newItem.textContent = `Phần tử ${count}`;
-
   list.appendChild(newItem);
   count++;
 });
 
 removeItem.addEventListener("click", () => {
-  const list = document.querySelector("#list");
   const lastItem = list.lastElementChild;
 
   if (lastItem) {
@@ -27,7 +24,6 @@ removeItem.addEventListener("click", () => {
 });
 
 removeAllItem.addEventListener("click", () => {
-  const list = document.querySelector("#list");
   if (list.children.length === 0) {
     alert("Không còn phần tử nào để xóa!");
     return;
