@@ -39,3 +39,19 @@ textarea {
   white-space: normal;
   word-wrap: break-word;
 }
+.filter-section {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+.filter-section button {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}
+.filter-section button:hover {
+  background-color: #d1d5db;
+}
+.filter-section button.active {
+  background-color: #3b82f6;
+  color: #ffffff;
+}

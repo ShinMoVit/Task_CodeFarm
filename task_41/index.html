@@ -19,6 +19,9 @@
         <label for="title" class="form-label">Title</label>
         <input type="text" class="form-control" name="title" id="title" />
       </div>
+      <div id="title-error" style="color: red; display: none">
+        Title cannot be empty!
+      </div>
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea
@@ -36,6 +39,17 @@
         </button>
       </div>
     </form>
+    <div class="filter-section">
+      <button onclick="filterTodos('all')" class="filter-btn active">
+        Tất cả
+      </button>
+      <button onclick="filterTodos('active')" class="filter-btn">
+        Chưa hoàn thành
+      </button>
+      <button onclick="filterTodos('completed')" class="filter-btn">
+        Hoàn thành
+      </button>
+    </div>
     <table id="todo-table" class="table">
       <thead>
         <tr>
