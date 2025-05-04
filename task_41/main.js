@@ -1,115 +1,123 @@
-let todos = JSON.parse(localStorage.getItem("todos")) || [];
-let filterStatus = "all";
-let editingId = null;
+const todoList = document.querySelector("#todo-list");
+const titleEle = document.querySelector("#title");
+const descriptionEle = document.querySelector("#description");
+const todoForm = document.querySelector("#todo-form");
+const btnReset = document.querySelector("#btnReset");
+const btnSubmit = document.querySelector("#btnSubmit");
+let idEditing = null;
+let todos = [];
+let todoCount = 0;
 
-const input = document.getElementById("todoInput");
-const todoList = document.getElementById("todoList");
-const errorMessage = document.getElementById("errorMessage");
-const actionButton = document.getElementById("actionButton");
-
-function saveTodos() {
-  localStorage.setItem("todos", JSON.stringify(todos));
+function generateRandomID() {
+  todoCount++;
+  return `todo_${todoCount}`;
 }
 
 function renderTodos() {
-  todoList.innerHTML = "";
-
-  const filtered = todos.filter((todo) => {
-    if (filterStatus === "active") return !todo.completed;
-    if (filterStatus === "completed") return todo.completed;
-    return true;
+  todos.sort((a, b) => {
+    if (a.status === b.status) return 0;
+    if (a.status && !b.status) return 1;
+    if (!a.status && b.status) return -1;
   });
+  const data = todos
+    .map((todo, index) => {
+      return `
+      <tr>
+        <td>${todo.id}</td>
+        <td>${todo.title}</td>
+        <td>${todo.description}</td>
+        <td>
+          <button class="btn ${
+            todo.status ? "btn-success" : "btn-secondary"
+          }" onclick="toggleStatus(${index})">
+            ${todo.status ? "Completed" : "Pending"}
+          </button>
+        </td>
+        <td>
+        <button class="btn btn-danger" onclick="deleteTodo(${index})">Remove</button>
+        <button class="btn btn-warning" onclick="editTodo(${index})">Update</button>
+        </td>
+      </tr>
+    `;
+    })
+    .join("");
 
-  if (filtered.length === 0) {
-    todoList.innerHTML = "<li>Không có công việc nào</li>";
-    return;
-  }
-
-  filtered.forEach((todo) => {
-    const li = document.createElement("li");
-    li.className = "todo-item";
-    li.innerHTML = `
-        <span onclick="toggleComplete('${todo.id}')" 
-              style="text-decoration: ${
-                todo.completed ? "line-through" : "none"
-              }; cursor: pointer;">
-          ${todo.text}
-        </span>
-        <div class="actions">
-          <button onclick="startEdit('${todo.id}')">Sửa</button>
-          <button onclick="deleteTodo('${todo.id}')">Xóa</button>
-        </div>
-      `;
-    todoList.appendChild(li);
-  });
+  todoList.innerHTML = data;
 }
+renderTodos();
 
-function addTodo() {
-  const value = input.value.trim();
-  if (!value) {
-    errorMessage.style.display = "block";
+const addTodo = () => {
+  const title = titleEle.value.trim();
+  const description = descriptionEle.value.trim();
+
+  if (title === "") {
+    alert("Title cannot be empty!");
     return;
   }
 
-  errorMessage.style.display = "none";
-
-  if (editingId) {
-    const index = todos.findIndex((t) => t.id === editingId);
-    if (index !== -1) {
-      todos[index].text = value;
-      editingId = null;
-      actionButton.textContent = "Thêm";
-    }
+  if (idEditing === null) {
+    const creatTodo = {
+      id: generateRandomID(),
+      title,
+      description,
+      status: false,
+    };
+    todos.push(creatTodo);
   } else {
-    todos.push({
-      id: Date.now().toString(),
-      text: value,
-      completed: false,
-    });
+    if (todos[idEditing]) {
+      todos[idEditing].title = title;
+      todos[idEditing].description = description;
+    }
+    idEditing = null;
   }
 
-  input.value = "";
-  saveTodos();
+  todoForm.reset();
   renderTodos();
-}
+  saveTodos();
+};
 
-function startEdit(id) {
-  const todo = todos.find((t) => t.id === id);
-  if (todo) {
-    input.value = todo.text;
-    editingId = id;
-    actionButton.textContent = "Cập nhật";
+const editTodo = (index) => {
+  if (todos[index]) {
+    titleEle.value = todos[index].title;
+    descriptionEle.value = todos[index].description;
+    idEditing = index;
   }
-}
+};
 
-function deleteTodo(id) {
-  todos = todos.filter((t) => t.id !== id);
-  saveTodos();
-  renderTodos();
-}
-
-function toggleComplete(id) {
-  const todo = todos.find((t) => t.id === id);
-  if (todo) {
-    todo.completed = !todo.completed;
+const deleteTodo = (index) => {
+  if (todos[index]) {
+    todos.splice(index, 1);
+    renderTodos();
     saveTodos();
+  }
+};
+
+const toggleStatus = (index) => {
+  todos[index].status = !todos[index].status;
+  renderTodos();
+  saveTodos();
+};
+
+btnReset.addEventListener("click", () => {
+  todoForm.reset();
+  idEditing = null;
+});
+
+todoForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  addTodo();
+});
+
+const saveTodos = () => {
+  localStorage.setItem("todos", JSON.stringify(todos));
+};
+
+const loadTodos = () => {
+  const savedTodos = localStorage.getItem("todos");
+  if (savedTodos) {
+    todos = JSON.parse(savedTodos);
+    todoCount = todos.length;
     renderTodos();
   }
-}
-
-function filterTodos(status) {
-  filterStatus = status;
-  document
-    .querySelectorAll(".filter-btn")
-    .forEach((btn) => btn.classList.remove("active"));
-  const current = [...document.querySelectorAll(".filter-btn")].find((btn) =>
-    btn.textContent.includes(
-      status === "all" ? "Tất cả" : status === "active" ? "Chưa" : "Hoàn"
-    )
-  );
-  current?.classList.add("active");
-  renderTodos();
-}
-
-// Initial render
-renderTodos();
+};
+loadTodos();
