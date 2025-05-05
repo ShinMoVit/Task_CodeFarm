@@ -108,7 +108,7 @@ const toggleStatus = (index) => {
 btnReset.addEventListener("click", () => {
   todoForm.reset();
   idEditing = null;
-  btnSubmit.textContent = "Add Todo";
+  btnSubmit.textContent = "Add";
   titleError.style.display = "none";
 });
 
