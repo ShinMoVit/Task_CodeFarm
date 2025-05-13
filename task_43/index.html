@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Danh sách sản phẩm</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..." />
+
+      <select id="sortSelect" onchange="sortProducts()">
+        <option value="">Sắp xếp theo giá</option>
+        <option value="asc">Giá tăng dần</option>
+        <option value="desc">Giá giảm dần</option>
+      </select>
+    </div>
+
+    <p id="productCount"></p>
+
+    <div class="container" id="productListSection">
+      <div id="productList"></div>
+    </div>
+
+    <div class="pagination">
+      <button onclick="prevPage()">Trước</button>
+      <span id="pageInfo"></span>
+      <button onclick="nextPage()">Sau</button>
+    </div>
+
+    <div id="productDetailSection" style="display: none">
+      <div id="productDetail"></div>
+      <button onclick="closeDetail()">Quay lại danh sách</button>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
